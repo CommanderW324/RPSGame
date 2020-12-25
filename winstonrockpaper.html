@@ -4,8 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .pencet{
+            width:300px;
+            height:300px;
+        }
+    </style>
+    
 </head>
 <body>
-    laksladasd
+    <h1>Hello, This is my Rock Paper Scissor Game ! Click on one to play !</h1>
+    <button onclick="generate_number(1)" id="rock"><img src=rps/rock.jpg class="pencet"></button>
+    <button id="paper" onclick="generate_number(2)"><img src=rps/paper.jfif class="pencet"></button>
+    <button id="scissor" onclick="generate_number(3)"><img src=rps/scissor.jfif class="pencet"></button>
+    <h1 id="choice"></h1>
+    <h1 id="result"></h1>
 </body>
+<script>
+    function generate_number(choice){
+        let computer = Math.floor((Math.random() * 3) + 1);
+        const choic = document.querySelector("#choice");
+        const result = document.querySelector("#result");
+        const rock = document.querySelector("#rock");
+        const scissor = document.querySelector("#scissor");
+        const paper = document.querySelector("#paper");
+        if(computer == 1){
+            choic.textContent = "The Computer chose Rock !";
+        }
+        else if(computer == 2){
+            choic.textContent = "The Computer Chose Paper !";
+        }
+        else{
+            choic.textContent = "The Computer Chose Scissor !";
+        }
+        
+        function delayed_alert(kata,time){
+            return setTimeout(()=>alert(kata),time);
+        }
+        if(choice == computer){
+           result.textContent = "It's a Draw -_-";
+        }
+        else if(choice == 1 && computer == 3 || choice == 2 && computer == 1|| choice == 3 && computer == 2){
+            result.textContent = "YOU HAVE WON ^_^!!!";
+            confetti.start(5000,1000);
+            paper.disabled = true;
+            scissor.disabled = true;
+            rock.disabled = true;
+            setTimeout(()=>{paper.disabled = false; scissor.disabled = false; rock.disabled= false;},4500);
+
+            
+        }
+        else{
+            result.textContent = "YOU LOST >_< !";
+        }
+    }
+    
+</script>
+<script src="https://cdn.jsdelivr.net/gh/mathusummut/confetti.js/confetti.min.js"></script>\
 </html>
